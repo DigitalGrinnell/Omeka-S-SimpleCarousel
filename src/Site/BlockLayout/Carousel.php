@@ -80,12 +80,12 @@ class Carousel extends AbstractBlockLayout
 
 		foreach ($attachments as $attachment)
 		{
-			foreach($attachment->item() as $item)
+			foreach($attachment->item()->media() as $media)
 			{
-				$media = $item->primaryMedia();
+				$primary_media = $attachment->item()->primaryMedia();
 				$mediaType = $media->mediaType();
 				$mediaRenderer = $media->renderer();
-				if ((strpos($mediaType, 'image/') !== false) || (strpos($mediaRenderer, 'youtube') !== false)) {
+				if (((strpos($mediaType, 'image/') !== false) || (strpos($mediaRenderer, 'youtube') !== false)) && $media->thumbnailUrl('large') == $primary_media->thumbnailUrl('large')) {
 					array_push($urls, $media->thumbnailUrl('large'));
 					$original_item = $media->item();
 					array_push($items, $original_item->url());
