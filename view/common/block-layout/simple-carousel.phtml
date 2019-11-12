@@ -15,9 +15,11 @@
 
 	<div class="siema">
 	<?php
+		$count = 0;
 		foreach ($urls as $url) {
-			$html = sprintf('<div class="siema-wrap" style="%s"><img class="siema-img" style="%s" src="%s"></div>', $wrapStyle, $imgStyle, $url);
+			$html = sprintf('<div class="siema-wrap" style="%s"><a href="%s"><img class="siema-img" style="%s" src="%s"></a></div>', $wrapStyle, $items[$count], $imgStyle, $url);
 			echo $html;
+			$count++;
 		}
 	?>
 	</div>
