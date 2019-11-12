@@ -76,6 +76,7 @@ class Carousel extends AbstractBlockLayout
 		}
 
 		$urls = [];
+		$items = [];
 
 		foreach ($attachments as $attachment)
 		{
@@ -85,6 +86,8 @@ class Carousel extends AbstractBlockLayout
 				$mediaRenderer = $media->renderer();
 				if ((strpos($mediaType, 'image/') !== false) || (strpos($mediaRenderer, 'youtube') !== false)) {
 					array_push($urls, $media->thumbnailUrl('large'));
+					$original_item = $media->item();
+					array_push($items, $original_item->url());
 				}
 			}
 		}
@@ -97,6 +100,7 @@ class Carousel extends AbstractBlockLayout
 			'draggable' => $block->dataValue('draggable'),
 			'title' => $block->dataValue('title'),
 			'urls' => $urls,
+			'items' => $items,
 			'autoSlide' => $block->dataValue('autoSlide'),
 			'autoSlideInt' => $block->dataValue('autoSlideInt'),
 			'wrapStyle' => $block->dataValue('wrapStyle'),
